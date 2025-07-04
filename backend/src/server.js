@@ -12,6 +12,21 @@ const server = () => {
     res.json(await todoService.getTodos());
   });
 
+  server.post('/api/todo', async (req, res) => {
+    const todo = req.body;
+    res.json(await todoService.addTodo(todo));
+  });
+
+  server.put('/api/todo', async (req, res) => {
+    const todo = req.body;
+    res.json(await todoService.updateTodo(todo));
+  });
+
+  server.delete('/api/todo/:id', async (req, res) => {
+    const id = req.params.id;
+    res.json(await todoService.deleteTodo(id));
+  });
+  
   /**
   POST /api/todo
   {
